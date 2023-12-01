@@ -14,24 +14,13 @@ def parse(file_name):
     
     return raw_input
 
-word_num_dict = {
-    "one": "1",
-    "two": "2",
-    "three": "3",
-    "four": "4",
-    "five": "5",
-    "six": "6",
-    "seven": "7",
-    "eight": "8",
-    "nine": "9",
-    "zero": "0"
-}
+number_words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
 def handle_digit(digit):
     if len(digit) == 1:
         return digit
     else:
-        return word_num_dict[digit]
+        return str(number_words.index(digit))
 
 def get_calibration_value(digits):
     first_digit = handle_digit(digits[0])
@@ -53,7 +42,7 @@ def part2(data):
     total_value = 0
 
     for string in data:
-        digits = re.findall(r"(?=(one|two|three|four|five|six|seven|eight|nine|zero|\d))", string)
+        digits = re.findall(fr"(?=({'|'.join(number_words[1:])}|\d))", string)
         if len(digits) >= 1:
             total_value += get_calibration_value(digits)
 
