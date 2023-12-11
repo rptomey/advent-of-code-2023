@@ -96,8 +96,21 @@ def part1(data):
     
     return max_path / 2
 
+def shoelace_formula(boundary):
+    nodes = []
+    for node in boundary:
+        arr = node.split(",")
+        nodes.append([int(arr[0]),int(arr[1])])
+    positions = nodes
+    a = 0
+    b = 0
+    for x in range(len(positions)):
+        a += positions[x][1] * positions[(x+1) % len(positions)][0]
+        b += positions[x][0] * positions[(x+1) % len(positions)][1]
+    return abs(a-b)/2 - len(positions) /2 + 1
+
 def part2(data):
-    pass
+    return shoelace_formula(data["max_cycle"])
 
 def solve(puzzle_input):
     """Solve the puzzle for the given input."""
