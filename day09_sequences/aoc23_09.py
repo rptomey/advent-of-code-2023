@@ -31,21 +31,6 @@ def get_next(sequence):
 
     return sum(last_values)
 
-def get_previous(sequence):
-    first_values = []
-    first_values.append(sequence[0])
-
-    while not all(x==0 for x in sequence):
-        temp = []
-        for i in range(len(sequence)-1):
-            temp.append(sequence[i+1]-sequence[i])
-        first_values.append(temp[0])
-        sequence = temp
-
-    
-
-    return first_values
-
 def part1(data):
     next_values = []
     for sequence in data:
