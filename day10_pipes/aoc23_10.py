@@ -4,9 +4,6 @@ import networkx as nx
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-import re
-import math
-
 pipe_key = {
     "|": ["north", "south"],
     "-": ["east", "west"],
