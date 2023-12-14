@@ -42,12 +42,6 @@ def move_rocks_dataframe(df, direction):
                     col[k - 1], col[k] = col[k], col[k - 1]
         return col
 
-    def move_left(row):
-        return move_up(list(row))
-
-    def move_right(row):
-        return move_down(list(row))
-
     if direction == 0:
         df = df.apply(move_up, axis=0)
     elif direction == 2:
@@ -63,34 +57,6 @@ def calculate_load_for_row(row):
     rocks = (row == 'O').sum()  # Count occurrences of 'O' in the row
     weighting = len(row) - row.name  # Calculate the adjusted factor
     return rocks * weighting  # Multiply the count by the adjusted factor
-
-def spin_df(df):
-    rotated = df.T
-    rotated = rotated[rotated.columns[::-1]].reset_index(drop=True)
-    return rotated
-
-def find_cycle_length(values):
-    # Initialize two pointers: slow and fast
-    slow = values[0]
-    fast = values[0]
-
-    # Move slow by one step and fast by two steps
-    while True:
-        slow = values[slow]
-        fast = values[values[fast]]
-
-        # If there's a cycle, the slow and fast pointers will meet
-        if slow == fast:
-            break
-
-    # Count the number of steps until the pointers meet again
-    count = 1
-    fast = values[slow]
-    while slow != fast:
-        fast = values[fast]
-        count += 1
-
-    return count  # Return the length of the cycle
 
 def part1(data):
     df = data[0].copy(deep=True)
