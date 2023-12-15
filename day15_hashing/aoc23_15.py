@@ -98,7 +98,32 @@ def part1(data):
     return total
 
 def part2(data):
-    pass
+    boxes = {}
+    for i in range(256):
+        boxes[i] = {}
+
+    for code in data["original"]:
+        if "=" in code:
+            label = code.split("=")[0]
+            power = int(code.split("=")[1])
+            target = data["hashes"][len(label)][label]
+            boxes[target][label] = power
+        elif "-" in code:
+            label = code.split("-")[0]
+            target = data["hashes"][len(label)][label]
+            if label in boxes[target].keys():
+                del boxes[target][label]
+
+    total_power = 0
+
+    for i in range(256):
+        this_box = boxes[i]
+        slot = 1
+        for lens in this_box.keys():
+            total_power += (i+1) * slot * this_box[lens]
+            slot += 1
+    
+    return total_power
 
 def solve(puzzle_input):
     """Solve the puzzle for the given input."""
