@@ -1,7 +1,6 @@
 import sys
 import re
 import math
-from collections import Counter
 
 def parse(file_name):
     instructions = []

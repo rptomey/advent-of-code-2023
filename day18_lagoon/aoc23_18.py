@@ -2,7 +2,6 @@ import sys
 import os
 import re
 import copy
-import numpy as np
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 

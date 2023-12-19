@@ -1,6 +1,5 @@
 import sys
 import re
-import math
 from collections import Counter
 
 def check_hand_type(cards):
